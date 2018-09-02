@@ -1,0 +1,56 @@
+type User{
+    id:ID!
+    seq:Int
+    name:String!
+    part:String!#QES/MOS
+    mod:String! #WP/MOS/TPSS/GPM 등
+    level:String!#PL/ML/MA
+    charge:String#CA/SE/BA
+    posts:[Post]
+}
+
+type Post{
+    id:ID!
+    seq:Int
+    cDate:String
+    tDate:String
+    title:String
+    content:String
+    shareType:String #ALL/ML/MA
+    author:User
+    replies:[Reply]
+}
+
+type Reply{
+    id:ID!
+    reply:String!
+    author:User!
+}
+
+type Query{
+    users:[User]
+    user(id:String!):User
+    posts:[Post]
+    post(id:String!):[Post]
+    replies:[Reply]
+}
+
+type Mutation{
+    addUser(seq:Int!
+            name:String!
+            part:String!
+            mod:String!
+            level:String!
+            charge:String):Boolean
+    addPost(seq:Int
+            cDate:String
+            tDate:String
+            title:String!
+            content:String!
+            shareType:String!
+            authorId:String):Boolean
+    addReply(seq:Int!
+             reply:String!
+             postId:String!
+             authorId:String!):Boolean
+}
